@@ -20,3 +20,11 @@ solution. The initial plan is to have the following structure for dfs/4 predicat
 
 Even though the idea of DFS is clear, i stuck on understaning what does "moving" through maze means in prolog. I know i need to check coordinates, if tile is not wall 'w', we can move there and add it to Visited field. But i want to be careful here, i dont want to check/move or move to check condition twice (one to check condition and one actually writing it to the path). I want to find a way to check condition in-place without moving. I need to figure out how to check 
 values in two-dimension lists. I suppose calling nth0/3 twice, one for row, one for column will work.
+
+## 5:11 PM
+
+Okay, i figured. First of all i need to move because i need to know row and column values, which i am moving into (so move/3 actually 
+determines not only direction of moving, but also coordinates).I can move only once inside dfs function right before checking for wall, 
+instead of moving both in dfs and check predicates. After moving i can check each cell But now i have problem with DFS backtracking. 
+I assume the problem is in incorrect variable binding, that is,program checks whether tile is visited in wrong timing. At current moment, 
+DFS algorithm pseudo working: if there is clear path to the exit, it finds it, but when it comes to backtracking it is only a possibility of success. 
