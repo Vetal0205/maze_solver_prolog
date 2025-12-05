@@ -12,3 +12,11 @@ First of all, map passed to find_exit predicate will be arbitrary size, with dif
 Found nth0/3 built-in predicate to check if 's', start location, is the index’th element of list. I will stick to it instead writing my own. The 'M' in find_exit(M, A) is "Maze" passed to the predicate. The 'A' for now returns a list with 
 X,Y location of 's' on 0-based arrays. It stops as soon as finds one starting point, if none found, returns false. It does
 not seem maze generator predicate provided by professor can generate more than one starting point, so it is alright.
+
+## 4:36 PM
+
+After determining maze starting point, we need to find exit, 'e'. I will use DFS(Depth First Search) algorithm to find 
+solution. The initial plan is to have the following structure for dfs/4 predicate: dfs(M, Pos, Visited, [Element | Path]). The 'Visited' field represents a stack with visited tiles. The 'Pos' is current position [X,Y]. Last argument is the solution to the maze. 
+
+Even though the idea of DFS is clear, i stuck on understaning what does "moving" through maze means in prolog. I know i need to check coordinates, if tile is not wall 'w', we can move there and add it to Visited field. But i want to be careful here, i dont want to check/move or move to check condition twice (one to check condition and one actually writing it to the path). I want to find a way to check condition in-place without moving. I need to figure out how to check 
+values in two-dimension lists. I suppose calling nth0/3 twice, one for row, one for column will work.
