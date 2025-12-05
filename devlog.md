@@ -6,3 +6,9 @@ following the actions does not end in an exit space, or if an action would resul
 ## 3:21 PM
 
 First of all, map passed to find_exit predicate will be arbitrary size, with diffirent starting point. I need to find this point to start path-searching.
+
+## 3:56 PM
+
+Found nth0/3 built-in predicate to check if 's', start location, is the index’th element of list. I will stick to it instead writing my own. The 'M' in find_exit(M, A) is "Maze" passed to the predicate. The 'A' for now returns a list with 
+X,Y location of 's' on 0-based arrays. It stops as soon as finds one starting point, if none found, returns false. It does
+not seem maze generator predicate provided by professor can generate more than one starting point, so it is alright.
