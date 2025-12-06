@@ -91,3 +91,12 @@ by adding check in either find_start/2 or check_wall/2 (might be the good idea t
 probably need to rewrite entire logic, but if i choose check_wall/2 only slight corrections are needed. On other hand, choosing second 
 means if we dont find another starting point while solving for exit, it will be valid, even if somewhere is another starting point. So i 
 need to alter find_start/2's logic to make it work.
+
+## 10:38 AM
+
+Found the tool i needed, the finadll/3 built-in predicate, but it to work i had to remove cut in the end of this line: nth0(X, Row, s). 
+Without cut, it searches for all possible solutions of X,Y. Here is updated find_start/2 predicate:
+find_start(M, Pos) :-
+    findall([X,Y], find_start_acc(M, 0, [X,Y]), All),
+    All = [Pos].
+Now it finds all X,Y pairs and store them in All, if only one pair is present: All = [Pos], it will succeed, fail otherwise.
