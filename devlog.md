@@ -65,3 +65,19 @@ Okay, so, turned out completely messed up with axes, and previous "successful" a
     ▐▔▔▔▔▔▍
 M = [[f, s, f, w, f], [f, w, f, w, f], [f, w, w, w, f], [f, f, f, e, f], [f, w, f, w|...]],
 A = [left, down, down, down, right, right, right|_] ;
+
+## 7:30 PM
+
+The issue was pretty simple, in dfs base case i do not actually bind Path to anything. So when it exits variable just stays not bound:
+
+dfs(M, Pos, Visited, Path) :- 
+    cell(M, Pos, Element), 
+    goal(Element). 
+
+Corrected with:
+
+dfs(M, Pos, Visited, []) :- 
+    cell(M, Pos, Element), 
+    goal(Element). 
+
+And while i am here, i also re-wrote dfs predicate to be tail-recursive. It will decrease stack memory usage.
