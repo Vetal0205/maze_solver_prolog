@@ -51,3 +51,17 @@ Random map:
     ▐▔▔▔▔▔▍
 M = [[f, f, f, w, f], [f, w, w, w, f], [f, w, f, f, f], [f, w, f, w, f], [f, f, s, w|...]],
 A = [up, up, right, right, down, down] 
+
+## 7:04 PM
+
+Okay, so, turned out completely messed up with axes, and previous "successful" attempts where guessing. Now axes everywhere fixed for sure
+, dfs/4,cell/3 and check_wall/3 and now it computes path correctly but the are formating issues i currectly having, the "|_]" ending:
+    ▐▁▁▁▁▁▍
+    ▐ s █ ▍
+    ▐ █ █ ▍
+    ▐ ███ ▍
+    ▐   e ▍
+    ▐ █ █ ▍
+    ▐▔▔▔▔▔▍
+M = [[f, s, f, w, f], [f, w, f, w, f], [f, w, w, w, f], [f, f, f, e, f], [f, w, f, w|...]],
+A = [left, down, down, down, right, right, right|_] ;
