@@ -81,3 +81,13 @@ dfs(M, Pos, Visited, []) :-
     goal(Element). 
 
 And while i am here, i also re-wrote dfs predicate to be tail-recursive. It will decrease stack memory usage.
+
+# December 6, 10:14 AM
+
+Since last session, i reviewed project instruction and wanted to clarify what is an "incorrect maze." Turns out, i made wrong assumption 
+about couple of starting points. The generator indeed generates correct mazes, but it does not mean someone cant pass wrong one. My code 
+completely ignores this fact proceeding once it finds at least one starting point, possibly resulting in finding solution. I can fix that 
+by adding check in either find_start/2 or check_wall/2 (might be the good idea to rename it then). If i choose find_start/2, i would 
+probably need to rewrite entire logic, but if i choose check_wall/2 only slight corrections are needed. On other hand, choosing second 
+means if we dont find another starting point while solving for exit, it will be valid, even if somewhere is another starting point. So i 
+need to alter find_start/2's logic to make it work.
