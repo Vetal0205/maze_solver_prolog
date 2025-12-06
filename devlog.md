@@ -100,3 +100,30 @@ find_start(M, Pos) :-
     findall([X,Y], find_start_acc(M, 0, [X,Y]), All),
     All = [Pos].
 Now it finds all X,Y pairs and store them in All, if only one pair is present: All = [Pos], it will succeed, fail otherwise.
+
+## 10:51 AM
+
+I was testing my code on bigger maps, and was constatly getting trunked output like this:
+?- 
+|    gen_map(4,10,10,M), display_map(M), find_exit(M,A).
+
+    ▐▁▁▁▁▁▁▁▁▁▁▍
+    ▐     █ █e ▍
+    ▐  █  █    ▍
+    ▐█ ████ █  ▍
+    ▐     ███ █▍
+    ▐  █  █    ▍
+    ▐  █  ████ ▍
+    ▐█ ████    ▍
+    ▐   █ ██ █ ▍
+    ▐ █ █ █s █ ▍
+    ▐        █ ▍
+    ▐▔▔▔▔▔▔▔▔▔▔▍
+
+M = [[f, f, f, f, f, w, f, w|...], [f, f, w, f, f, w, f|...], [w, f, w, w, w, w|...], [f, f, f, f, f|...], [f, f, w, f|...], [f, f, w|...], [w, f|...], [f|...], [...|...]|...],
+
+A = [right, up, up, right, right, up, up, left, up|...] .
+
+To fix this i run following query (i will also include it in README file):
+
+?- set_prolog_flag(answer_write_options, [max_depth(0)]).
