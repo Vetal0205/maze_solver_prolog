@@ -10,9 +10,10 @@ find_exit(M, A):-
     dfs(M, Pos, [], A).
 
 find_start(M, Pos) :-
-    find_start_acc(M, 0, Pos).
+    findall([X,Y], find_start_acc(M, 0, [X,Y]), All),
+    All = [Pos].
 find_start_acc([Row|_], Y, [X,Y]) :-
-    nth0(X, Row, s),!.
+    nth0(X, Row, s).
 find_start_acc([_|Rest], Y0, Pos) :-
     Y1 is Y0 + 1,
     find_start_acc(Rest, Y1, Pos).
