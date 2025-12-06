@@ -28,3 +28,26 @@ determines not only direction of moving, but also coordinates).I can move only o
 instead of moving both in dfs and check predicates. After moving i can check each cell But now i have problem with DFS backtracking. 
 I assume the problem is in incorrect variable binding, that is,program checks whether tile is visited in wrong timing. At current moment, 
 DFS algorithm pseudo working: if there is clear path to the exit, it finds it, but when it comes to backtracking it is only a possibility of success. 
+
+## 6:37 PM
+
+I found the issue. The actual problem was in the way i return starting tile's coordinates. When i started writing cell/3 and check_wall/3, 
+i inversed Column and Row arguments by mistake. After fixing, it works correctly on random generated maps.But for some reason it does not 
+work for basic map. I suppose there are edge cases i missed.
+    ▐▁▁▁▍
+    ▐█s█▍
+    ▐  █▍
+    ▐e██▍
+    ▐▔▔▔▍
+M = [[w, s, w], [f, f, w], [e, w, w]],
+A = [right, up, right|_] .
+Random map:
+    ▐▁▁▁▁▁▍
+    ▐   █ ▍
+    ▐ ███ ▍
+    ▐ █   ▍
+    ▐ █ █ ▍
+    ▐  s█e▍
+    ▐▔▔▔▔▔▍
+M = [[f, f, f, w, f], [f, w, w, w, f], [f, w, f, f, f], [f, w, f, w, f], [f, f, s, w|...]],
+A = [up, up, right, right, down, down] 
