@@ -17,17 +17,16 @@ find_start_acc([_|Rest], Y0, Pos) :-
     Y1 is Y0 + 1,
     find_start_acc(Rest, Y1, Pos).
 
-dfs(M, Pos, Visited, Path) :- 
+dfs(M, Pos, Visited, []) :- 
     cell(M, Pos, Element), 
     goal(Element). 
     
-dfs(M, [X,Y], Visited, Path) :- 
+dfs(M, [X,Y], Visited, [Dir | Path]) :- 
     Visited1 = [[X,Y]|Visited], 
     move(Dir, [X,Y], [NX,NY]), 
     check_wall(M, [NX, NY]), 
     \+ member([NX,NY], Visited1), 
-    dfs(M, [NX,NY], Visited1, NPath), 
-    Path = [Dir | NPath].
+    dfs(M, [NX,NY], Visited1, Path).
 
 check_wall(M, [NX, NY]) :-
     cell(M, [NX,NY], Cell),
