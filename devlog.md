@@ -133,3 +133,9 @@ To fix this i run following query (i will also include it in README file):
 For this session i plan make additional testing using gen_map/4 predicate. Specifically, testing on large mazes (20x20 and bigger) with 
 different "density" (number of iterations the algorithm should go through), starting from 4 and ending maze dimension / 2. If we set upper 
 bound bigger than dimension / 2, there is no further noticable difference.
+
+## 11:14 AM
+
+I was trying various configuration, all worked fine except for big mazes with low density, like in gen_map(4, 20, 20, M). There is a lot of 
+empty spaces in the maze making DFS algorithm ran out of stack memory. It means i did not make my code tail-recursive. I will try to do it
+in separate branch.
