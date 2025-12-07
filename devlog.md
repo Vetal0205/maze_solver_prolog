@@ -146,3 +146,19 @@ After some research, here is what i need to do: i need to get rid of recusion (c
 from dynamic activation records to static data structures. Which in turn mean, i need to handle stack myself (it will have positions and 
 their partial paths). Since there is no recursion, we cannot backtrack, so we will just be pushing valid moves onto the our stack for later
 processing. Each new path segment now will be stored directly inside the stack entry.
+
+## 3:12 PM (tail_recursive_dfs)
+
+Converted the recursive DFS into its loop version. The loop behaves as follows: 
+
+    it inspects the top of the stack; 
+    if the position matches our goal (exit), 
+        it returns the stored path; 
+    if the stack is empty, 
+        the search fails (no valid moves left and no goal was reached). 
+    When the position has already been visited, 
+        the loop discards that entry and continues 
+        (need both member(...) and \+ member(...) so the program does not stop when faced visited node). 
+    When the position is new, 
+        it is added to the visited set, all valid neighbors are generated and pushed as new stack entry with the extended path,
+        and then loop repeats.
