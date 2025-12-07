@@ -139,3 +139,10 @@ bound bigger than dimension / 2, there is no further noticable difference.
 I was trying various configuration, all worked fine except for big mazes with low density, like in gen_map(4, 20, 20, M). There is a lot of 
 empty spaces in the maze making DFS algorithm ran out of stack memory. It means i did not make my code tail-recursive. I will try to do it
 in separate branch.
+
+## 12:39 AM (tail_recursive_dfs)
+
+After some research, here is what i need to do: i need to get rid of recusion (creating new activation records), meaning i need to switch 
+from dynamic activation records to static data structures. Which in turn mean, i need to handle stack myself (it will have positions and 
+their partial paths). Since there is no recursion, we cannot backtrack, so we will just be pushing valid moves onto the our stack for later
+processing. Each new path segment now will be stored directly inside the stack entry.
