@@ -162,3 +162,8 @@ Converted the recursive DFS into its loop version. The loop behaves as follows:
     When the position is new, 
         it is added to the visited set, all valid neighbors are generated and pushed as new stack entry with the extended path,
         and then loop repeats.
+
+# December 10, 5:23 PM
+
+Today i plan to do final testing before submiting project. Before i tested my predicate with unbound variable for solution, meaning, find 
+"A" that results in solved maze. Now i want to check inverse behavior, pass solution, and check whether it is true. 
