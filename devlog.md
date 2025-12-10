@@ -167,3 +167,20 @@ Converted the recursive DFS into its loop version. The loop behaves as follows:
 
 Today i plan to do final testing before submiting project. Before i tested my predicate with unbound variable for solution, meaning, find 
 "A" that results in solved maze. Now i want to check inverse behavior, pass solution, and check whether it is true. 
+
+## 5:49 PM
+
+I noticed that when we pass the path like:
+
+?- basic_map(M), display_map(M), find_exit(M,[down,up,down, left, down]).
+
+    ▐▁▁▁▍
+    ▐█s█▍
+    ▐  █▍
+    ▐e██▍
+    ▐▔▔▔▍
+false.
+
+It results to be false. Which will seem weird, since the path is resulting in exit tile. The problem is that my dfs/4 predicate calculates
+the solution taking into account visited tiles. Therefore it is impossible to prove path that does loops. To counter that i created new 
+predicate valid_path/3 to "check" passed path to result in exit even if there are loops (revisited nodes).
