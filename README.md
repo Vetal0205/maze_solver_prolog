@@ -45,14 +45,14 @@ Load everything:
 
 ### Generate and Solve a Maze
 
-    ?- gen_map(4, 15, 15, M),
+    ?- gen_map(4, 15, 15, M),!,
        display_map(M),
        find_exit(M, A).
 
 `A` is a move list leading from `s` to `e`.
 
 
-    ?- basic_map(M),
+    ?- basic_map(M),!,
        display_map(M),
        find_exit(M, [right, right, down]).
 
