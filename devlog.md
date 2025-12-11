@@ -184,3 +184,7 @@ false.
 It results to be false. Which will seem weird, since the path is resulting in exit tile. The problem is that my dfs/4 predicate calculates
 the solution taking into account visited tiles. Therefore it is impossible to prove path that does loops. To counter that i created new 
 predicate valid_path/3 to "check" passed path to result in exit even if there are loops (revisited nodes).
+
+# December 10, 6:42 PM
+
+Project is ready for submission.
