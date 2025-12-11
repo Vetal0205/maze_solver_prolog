@@ -1,0 +1,62 @@
+README.md
+--------------------------------------------------------------------------------
+# Maze Search (Prolog)
+
+## Overview
+This project implements a maze solver and path validator in Prolog. It can:
+
+- Generate random mazes (generate_maze.pl)
+- Display them (display_map/1)
+- Locate the start cell `s`
+- Find a path to the exit `e` using DFS
+
+## Files and Structure
+
+| File | Description |
+|------|-------------|
+| vitalii_project_2.pl | Maze solver: find_start, path validation, DFS search, movement rules. |
+| generate_maze.pl | Maze generator (gen_map/4) and map renderer (display_map/1). |
+| README.md | This documentation. |
+
+
+## Core Components
+
+| Predicate | Purpose |
+|-----------|---------|
+| find_exit/2 | Main interface: generate path (DFS) or validate a supplied path. |
+| find_start/2 | Locates the single start cell `s`. |
+| valid_path/3 | Walks a move sequence and checks if it ends on `e`. |
+| dfs/3 | Sets up the DFS and returns a path. |
+| dfs_loop/4 | DFS engine; two goal clauses allow solution emission and continued search. |
+| push_on_stack/4 | Builds new DFS frames. |
+| move/3 | Defines directional moves. |
+| check_wall/2 | Ensures next cell is not a wall. |
+| walk/4 | Executes a move list from a given position. |
+
+
+## Running the Program
+
+Load everything:
+
+    ?- [vitalii_project_2, test].
+    ?- set_prolog_flag(answer_write_options, [max_depth(0)]).
+
+
+## Usage
+
+### Generate and Solve a Maze
+
+    ?- gen_map(4, 15, 15, M),
+       display_map(M),
+       find_exit(M, A).
+
+`A` is a move list leading from `s` to `e`.
+
+
+    ?- basic_map(M),
+       display_map(M),
+       find_exit(M, [right, right, down]).
+
+Succeeds only if the path is legal and ends on `e`.
+
+--------------------------------------------------------------------------------
