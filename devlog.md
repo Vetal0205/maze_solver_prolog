@@ -34,6 +34,7 @@ DFS algorithm pseudo working: if there is clear path to the exit, it finds it, b
 I found the issue. The actual problem was in the way i return starting tile's coordinates. When i started writing cell/3 and check_wall/3, 
 i inversed Column and Row arguments by mistake. After fixing, it works correctly on random generated maps.But for some reason it does not 
 work for basic map. I suppose there are edge cases i missed.
+
     ▐▁▁▁▍
     ▐█s█▍
     ▐  █▍
@@ -42,6 +43,7 @@ work for basic map. I suppose there are edge cases i missed.
 M = [[w, s, w], [f, f, w], [e, w, w]],
 A = [right, up, right|_] .
 Random map:
+
     ▐▁▁▁▁▁▍
     ▐   █ ▍
     ▐ ███ ▍
@@ -56,6 +58,7 @@ A = [up, up, right, right, down, down]
 
 Okay, so, turned out completely messed up with axes, and previous "successful" attempts where guessing. Now axes everywhere fixed for sure
 , dfs/4,cell/3 and check_wall/3 and now it computes path correctly but the are formating issues i currectly having, the "|_]" ending:
+
     ▐▁▁▁▁▁▍
     ▐ s █ ▍
     ▐ █ █ ▍
