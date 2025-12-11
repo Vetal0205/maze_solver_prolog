@@ -38,6 +38,11 @@ dfs_loop(M, [frame(Pos, Moves)|_], _, Moves) :-
     cell(M, Pos, E),
     goal(E).
 
+dfs_loop(M, [frame(Pos, _)|Stack], Visited, Path) :-
+    cell(M, Pos, E),
+    goal(E),
+    dfs_loop(M, Stack, Visited, Path).
+
 % No more nodes
 dfs_loop(_, [], _, _) :-
     fail.
