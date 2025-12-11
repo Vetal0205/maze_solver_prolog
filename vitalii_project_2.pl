@@ -4,17 +4,17 @@
 % A is the list of directions representing the path to the exit (left, right, up, down)
 
 goal(e).
-
+% If A is given, just check if it legally reaches the exit.
 find_exit(M, A):-
     nonvar(A),
     find_start(M, Pos),
     valid_path(M, Pos, A), !.
-
+% If A is unbound, run DFS to produce a path.
 find_exit(M, A):-
     var(A),
     find_start(M, Pos),
     dfs(M, Pos, A).
-
+% Locate the start cell s (should be only one)
 find_start(M, Pos) :-
     findall([X,Y], find_start_acc(M, 0, [X,Y]), All),
     All = [Pos].
@@ -23,7 +23,7 @@ find_start_acc([Row|_], Y, [X,Y]) :-
 find_start_acc([_|Rest], Y0, Pos) :-
     Y1 is Y0 + 1,
     find_start_acc(Rest, Y1, Pos).
-
+% Walk the user path; must end exactly on e.
 valid_path(M, Pos, Path) :-
     walk(M, Pos, Path, PosF),
     cell(M, PosF, e).
@@ -33,11 +33,11 @@ dfs(M, Pos, Path) :-
     Stack = [frame(Pos, [])], % start pos.
     dfs_loop(M, Stack, Visited, Rev),
     reverse(Rev, Path).
-
+% Found exit: produce this path.
 dfs_loop(M, [frame(Pos, Moves)|_], _, Moves) :-
     cell(M, Pos, E),
     goal(E).
-
+% Same exit frame, but now entered by backtracking: continue search.
 dfs_loop(M, [frame(Pos, _)|Stack], Visited, Path) :-
     cell(M, Pos, E),
     goal(E),
@@ -83,7 +83,7 @@ move(Dir, [X,Y], [NX,NY]) :-
     Dir = up, NX is X, NY is Y - 1.
 move(Dir, [X,Y], [NX,NY]) :-
     Dir = down, NX is X, NY is Y + 1.
-
+% Execute the path step-by-step.
 walk(_, Pos, [], Pos).
 walk(M, Pos0, [Dir|Rest], PosF) :-
     move(Dir, Pos0, Pos1),
