@@ -1,5 +1,4 @@
-README.md
---------------------------------------------------------------------------------
+
 # Maze Search (Prolog)
 
 ## Overview
@@ -38,7 +37,7 @@ This project implements a maze solver and path validator in Prolog. It can:
 
 Load everything:
 
-    ?- [vitalii_project_2, test].
+    ?- [vitalii_project_2, generate_maze].
     ?- set_prolog_flag(answer_write_options, [max_depth(0)]).
 
 
@@ -58,5 +57,3 @@ Load everything:
        find_exit(M, [right, right, down]).
 
 Succeeds only if the path is legal and ends on `e`.
-
---------------------------------------------------------------------------------
