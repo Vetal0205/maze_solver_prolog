@@ -6,6 +6,12 @@
 goal(e).
 
 find_exit(M, A):-
+    nonvar(A),
+    find_start(M, Pos),
+    valid_path(M, Pos, A), !.
+
+find_exit(M, A):-
+    var(A),
     find_start(M, Pos),
     dfs(M, Pos, A).
 
@@ -17,6 +23,10 @@ find_start_acc([Row|_], Y, [X,Y]) :-
 find_start_acc([_|Rest], Y0, Pos) :-
     Y1 is Y0 + 1,
     find_start_acc(Rest, Y1, Pos).
+
+valid_path(M, Pos, Path) :-
+    walk(M, Pos, Path, PosF),
+    cell(M, PosF, e).
 
 dfs(M, Pos, Path) :-
     Visited = [],
@@ -68,3 +78,9 @@ move(Dir, [X,Y], [NX,NY]) :-
     Dir = up, NX is X, NY is Y - 1.
 move(Dir, [X,Y], [NX,NY]) :-
     Dir = down, NX is X, NY is Y + 1.
+
+walk(_, Pos, [], Pos).
+walk(M, Pos0, [Dir|Rest], PosF) :-
+    move(Dir, Pos0, Pos1),
+    check_wall(M, Pos1),
+    walk(M, Pos1, Rest, PosF).
